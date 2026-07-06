@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Academics | Adegbole Precious-Jewel Academy & High School</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="apja.css">
+</head>
+<body>
+<header>
+    <div class="logo">
+        <img src="https://apjaacademy.lovable.app/assets/logo-UagVTFBA.png" alt="School Logo">
+        <div>
+            <h2>Adegbole Precious-Jewel</h2>
+            <span>Academy & High School</span>
+        </div>
+    </div>
+    <nav>
+        <a href="apja.html">Home</a>
+        <a href="about.html">About</a>
+        <a href="academics.html">Academics</a>
+        <a href="admissions.html">Admissions</a>
+        <a href="application.html">Application</a>
+        <a href="gallery.html">Gallery</a>
+        <a href="news.html">News</a>
+        <a href="contact.html">Contact</a>
+    </nav>
+    <a href="application.html" class="apply-btn">Apply Now</a>
+</header>
+<section class="statistics">
+    <div class="section-title">
+        <span>STATISTICS</span>
+    </div>
+    <div class="stats-row">
+    <div class="stat">
+        <h2 class="stat-value" data-target="1000" data-suffix="+">0</h2>
+        <p>Students</p>
+    </div>
+    <div class="stat">
+        <h2 class="stat-value" data-target="60" data-suffix="+">0</h2>
+        <p>Qualified Teachers</p>
+    </div>
+    <div class="stat">
+        <h2 class="stat-value" data-target="20" data-suffix="+">0</h2>
+        <p>Years of Excellence</p>
+    </div>
+    <div class="stat">
+        <h2 class="stat-value" data-target="98" data-suffix="%">0</h2>
+        <p>Exam Success Rate</p>
+    </div>
+    </div>
+</section>
+<section id="academics" class="programs">
+    <div class="section-title">
+        <span>OUR SCHOOL</span>
+        <h2>Academic Programmes</h2>
+    </div>
+    <div class="program-grid">
+        <div class="card">
+            <img src="https://apjaacademy.lovable.app/assets/program-creche-1m0BqHxp.jpg" alt="Creche">
+            <h3>Creche</h3>
+            <p>Safe and loving childcare environment.</p>
+        </div>
+        <div class="card">
+            <img src="https://apjaacademy.lovable.app/assets/program-primary-DznotHG8.jpg" alt="Nursery & Primary">
+            <h3>Nursery School</h3>
+            <p>Learning through creativity and exploration.</p>
+        </div>
+        <div class="card">
+            <img src="https://apjaacademy.lovable.app/assets/program-primary-DznotHG8.jpg" alt="Primary">
+            <h3>Primary School</h3>
+            <p>Building strong academic foundations.</p>
+        </div>
+        <div class="card">
+            <img src="https://apjaacademy.lovable.app/assets/program-primary-DznotHG8.jpg" alt="Junior Secondary">
+            <h3>Junior Secondary</h3>
+            <p>Preparing students for higher education.</p>
+        </div>
+        <div class="card">
+            <img src="https://apjaacademy.lovable.app/assets/program-highschool-1upV3WyR.jpg" alt="Senior Secondary">
+            <h3>Senior Secondary</h3>
+            <p>Academic excellence and career readiness.</p>
+        </div>
+    </div>
+</section>
+<footer>
+    <div>
+        <h3>Adegbole Precious-Jewel Academy & High School</h3>
+        <p>Inspiring Excellence. Building Leaders.</p>
+    </div>
+    <div>
+        <h4>Quick Links</h4>
+        <a href="apja.html">Home</a>
+        <a href="about.html">About</a>
+        <a href="academics.html">Academics</a>
+        <a href="admissions.html">Admissions</a>
+        <a href="application.html">Application</a>
+        <a href="gallery.html">Gallery</a>
+        <a href="news.html">News</a>
+        <a href="contact.html">Contact</a>
+    </div>
+    <div class="footer-contact">
+        <h4>Contact</h4>
+        <p class="footer-contact-item location">Abbatoir, Jos, Nigeria</p>
+        <p class="footer-contact-item email"><a href="mailto:info@apjaacademy.com">info@apjaacademy.com</a></p>
+        <p class="footer-contact-item phone"><a href="tel:+2348036341660">0803 634 1660</a></p>
+        <p class="footer-contact-item hours">Mon - Fri: 8:00 AM - 4:00 PM</p>
+    </div>
+    <div class="footer-social">
+        <h4>Follow Us</h4>
+        <ul>
+            <li><a href="#" class="social facebook">Facebook</a></li>
+            <li><a href="#" class="social instagram">Instagram</a></li>
+            <li><a href="#" class="social linkedin">LinkedIn</a></li>
+        </ul>
+    </div>
+</footer>
+</script>
+<script>
+document.addEventListener('DOMContentLoaded', function(){
+    const counters = document.querySelectorAll('.stat-value');
+    const animate = (el, target, suffix) => {
+        let current = 0;
+        const duration = 1200;
+        const steps = Math.max(20, Math.floor(duration / 16));
+        const increment = Math.ceil(target / steps);
+        const timer = setInterval(()=>{
+            current += increment;
+            if(current >= target){ el.textContent = target + (suffix||''); clearInterval(timer); }
+            else el.textContent = current + (suffix||'');
+        }, Math.max(12, Math.floor(duration/steps)));
+    };
+    const io = new IntersectionObserver((entries, obs)=>{
+        entries.forEach(entry=>{
+            if(entry.isIntersecting){
+                const el = entry.target;
+                const target = parseInt(el.dataset.target,10)||0;
+                const suffix = el.dataset.suffix||'';
+                animate(el,target,suffix);
+                obs.unobserve(el);
+            }
+        });
+    },{threshold:0.6});
+    counters.forEach(c=> io.observe(c));
+});
+</script>
+<script src="script.js"></script>
+</body>
+</html>

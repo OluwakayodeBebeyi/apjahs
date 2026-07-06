@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Application Form | Adegbole Precious-Jewel Academy & High School</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="apja.css">
+    <style>
+        .application{
+            padding:90px 8%;
+            max-width:940px;
+            margin:0 auto;
+        }
+        .application-form{background:#fff;padding:28px;border-radius:14px;box-shadow:var(--shadow)}
+        .application-form .row{display:flex;gap:14px;flex-wrap:wrap}
+        .application-form label{display:block;font-weight:600;margin-bottom:6px}
+        .application-form input,.application-form select,.application-form textarea{width:100%;padding:12px;border-radius:8px;border:1px solid #e6eef9}
+        .application-form .col{flex:1 1 220px}
+        .form-actions{margin-top:18px}
+        .thankyou{display:none;padding:18px;background:linear-gradient(90deg,#10b98122,#60a5fa22);border-radius:12px;margin-top:12px}
+    </style>
+</head>
+<body>
+<header>
+    <div class="logo">
+        <img src="https://apjaacademy.lovable.app/assets/logo-UagVTFBA.png" alt="School Logo">
+        <div>
+            <h2>Adegbole Precious-Jewel</h2>
+            <span>Academy & High School</span>
+        </div>
+    </div>
+    <nav>
+        <a href="apja.html">Home</a>
+        <a href="about.html">About</a>
+        <a href="academics.html">Academics</a>
+        <a href="admissions.html">Admissions</a>
+        <a href="application.html">Application</a>
+        <a href="gallery.html">Gallery</a>
+        <a href="news.html">News</a>
+        <a href="contact.html">Contact</a>
+    </nav>
+    <a href="application.html" class="apply-btn">Apply Now</a>
+</header>
+
+<section class="application">
+    <div class="section-title">
+        <span>APPLICATION</span>
+        <h2>Online Application Form</h2>
+    </div>
+    <div class="application-form">
+        <form id="fullAppForm" enctype="multipart/form-data">
+            <h3>Applicant Details</h3>
+            <div class="row">
+                <div class="col">
+                    <label for="app_fullname">Child's Full Name</label>
+                    <input id="app_fullname" name="app_fullname" required>
+                </div>
+                <div class="col">
+                    <label for="app_dob">Date of Birth</label>
+                    <input id="app_dob" name="app_dob" type="date" required>
+                </div>
+            </div>
+            <div class="row" style="margin-top:12px">
+                <div class="col">
+                    <label for="app_gender">Gender</label>
+                    <select id="app_gender" name="app_gender">
+                        <option>Female</option>
+                        <option>Male</option>
+                        <option>Other</option>
+                    </select>
+                </div>
+                <div class="col">
+                    <label for="program">Program Applying For</label>
+                    <select id="program" name="program">
+                        <option>Creche</option>
+                        <option>Nursery School</option>
+                        <option>Primary School</option>
+                        <option>Junior Secondary</option>
+                        <option>Senior Secondary</option>
+                    </select>
+                </div>
+            </div>
+
+            <h3 style="margin-top:20px">Parent / Guardian</h3>
+            <div class="row">
+                <div class="col">
+                    <label for="parent_name">Parent / Guardian Name</label>
+                    <input id="parent_name" name="parent_name" required>
+                </div>
+                <div class="col">
+                    <label for="parent_relation">Relationship</label>
+                    <input id="parent_relation" name="parent_relation">
+                </div>
+            </div>
+            <div class="row" style="margin-top:12px">
+                <div class="col">
+                    <label for="parent_phone">Phone</label>
+                    <input id="parent_phone" name="parent_phone" type="tel" required>
+                </div>
+                <div class="col">
+                    <label for="parent_email">Email</label>
+                    <input id="parent_email" name="parent_email" type="email">
+                </div>
+            </div>
+
+            <h3 style="margin-top:20px">Previous Education & Medical</h3>
+            <div class="row">
+                <div class="col">
+                    <label for="prev_school">Previous School (if any)</label>
+                    <input id="prev_school" name="prev_school">
+                </div>
+                <div class="col">
+                    <label for="allergies">Allergies / Medical Notes</label>
+                    <input id="allergies" name="allergies">
+                </div>
+            </div>
+
+            <h3 style="margin-top:20px">Documents (optional)</h3>
+            <div style="display:flex;gap:12px;flex-wrap:wrap">
+                <div style="flex:1 1 280px">
+                    <label for="doc_birth">Birth Certificate / Age Proof</label>
+                    <input id="doc_birth" name="doc_birth" type="file" accept="image/*,.pdf">
+                </div>
+                <div style="flex:1 1 200px">
+                    <label for="doc_photo">Passport Photo</label>
+                    <input id="doc_photo" name="doc_photo" type="file" accept="image/*">
+                </div>
+            </div>
+
+            <div class="form-actions" style="margin-top:18px;display:flex;align-items:center">
+                <button type="submit" class="primary-btn">Submit Application</button>
+                <a href="admissions.html" class="secondary-btn" style="margin-left:12px">Back</a>
+            </div>
+            <div class="thankyou" id="thankyou">Thank you — your application has been received (demo). We will contact you soon.</div>
+        </form>
+    </div>
+</section>
+
+<footer>
+    <div>
+        <h3>Adegbole Precious-Jewel Academy & High School</h3>
+        <p>Inspiring Excellence. Building Leaders.</p>
+    </div>
+    <div>
+        <h4>Quick Links</h4>
+        <a href="apja.html">Home</a>
+        <a href="about.html">About</a>
+        <a href="academics.html">Academics</a>
+        <a href="admissions.html">Admissions</a>
+        <a href="application.html">Application</a>
+        <a href="gallery.html">Gallery</a>
+        <a href="news.html">News</a>
+        <a href="contact.html">Contact</a>
+    </div>
+    <div class="footer-contact">
+        <h4>Contact</h4>
+        <p class="footer-contact-item location">Abbatoir, Jos, Nigeria</p>
+        <p class="footer-contact-item email"><a href="mailto:info@apjaacademy.com">info@apjaacademy.com</a></p>
+        <p class="footer-contact-item phone"><a href="tel:+2348036341660">0803 634 1660</a></p>
+        <p class="footer-contact-item hours">Mon - Fri: 8:00 AM - 4:00 PM</p>
+    </div>
+    <div class="footer-social">
+        <h4>Follow Us</h4>
+        <ul>
+            <li><a href="#" class="social facebook">Facebook</a></li>
+            <li><a href="#" class="social instagram">Instagram</a></li>
+            <li><a href="#" class="social linkedin">LinkedIn</a></li>
+        </ul>
+    </div>
+</footer>
+
+<script>
+// Configuration: replace with your real endpoints
+const EMAIL_RECIPIENT = 'info@apjacademy.com';
+const FORMSPREE_URL = ''; // optional: replace with your Formspree form endpoint if you want direct form submission
+const GOOGLE_SHEETS_WEBHOOK = ''; // optional: Google Apps Script Web App URL to receive JSON
+
+function showMessage(text, success=true){
+    const el = document.getElementById('thankyou');
+    el.textContent = text;
+    el.style.display = 'block';
+    el.style.background = success ? 'linear-gradient(90deg,#10b98122,#60a5fa22)' : '#ffd6d6';
+}
+
+function validateForm(form){
+    const required = ['app_fullname','app_dob','parent_name','parent_phone'];
+    for(const id of required){
+        const el = form.querySelector('[name="'+id+'"]');
+        if(!el || !el.value.trim()){
+            el.focus();
+            return {ok:false, msg:'Please complete the required fields.'};
+        }
+    }
+    return {ok:true};
+}
+
+// file previews
+document.getElementById('doc_photo').addEventListener('change', function(e){
+    const file = e.target.files[0];
+    const preview = document.getElementById('photoPreview');
+    preview.innerHTML = '';
+    if(file && file.type.startsWith('image/')){
+        const img = document.createElement('img');
+        img.src = URL.createObjectURL(file);
+        img.style.maxWidth = '140px';
+        img.style.borderRadius = '8px';
+        preview.appendChild(img);
+    }
+});
+
+document.getElementById('doc_birth').addEventListener('change', function(e){
+    const file = e.target.files[0];
+    const preview = document.getElementById('birthPreview');
+    preview.textContent = file ? file.name : '';
+});
+
+document.getElementById('fullAppForm').addEventListener('submit', async function(e){
+    e.preventDefault();
+    const form = e.target;
+    const valid = validateForm(form);
+    if(!valid.ok){ showMessage(valid.msg,false); return; }
+
+    const submitBtn = form.querySelector('button[type="submit"]');
+    submitBtn.disabled = true; submitBtn.textContent = 'Submitting...';
+
+    const formData = new FormData(form);
+
+    // prefer official email via mailto
+    try{
+        const entries = {};
+        formData.forEach((value, key) => {
+            if(value instanceof File){
+                entries[key] = value.name || '(file attached)';
+            } else {
+                entries[key] = value;
+            }
+        });
+
+        const subject = encodeURIComponent('New Application Submission');
+        const bodyLines = [
+            'A new application has been submitted with the following details:',
+            '---',
+        ];
+        for(const key of Object.keys(entries)){
+            bodyLines.push(`${key}: ${entries[key]}`);
+        }
+        const body = encodeURIComponent(bodyLines.join('\n'));
+        const mailto = `mailto:${EMAIL_RECIPIENT}?subject=${subject}&body=${body}`;
+
+        showMessage('Opening your email app to send the application details.');
+        window.location.href = mailto;
+        form.reset();
+        document.getElementById('photoPreview').innerHTML = '';
+        document.getElementById('birthPreview').textContent = '';
+    }catch(err){
+        console.error(err);
+        showMessage('Unable to open email app. Contact info@apjacademy.com directly.', false);
+    }finally{
+        submitBtn.disabled = false; submitBtn.textContent = 'Submit Application';
+    }
+});
+</script>
+</body>
+</html>
