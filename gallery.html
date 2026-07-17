@@ -32,16 +32,43 @@
 </header>
 <section id="gallery" class="gallery">
     <div class="section-title">
-        <span>Career Day 2026</span>
+        <span>Events and Moments</span>
     </div>
-    <div class="gallery-grid">
-        <div class="gallery-card">
-            <img src="images/WhatsApp Image 2026-07-06 at 11.37.07 (1).jpeg" alt="Career Day photo 1">
-        </div>
-        <div class="gallery-card">
-            <img src="images/WhatsApp Image 2026-07-06 at 11.37.07.jpeg" alt="Career Day photo 2">
+    <div class="gallery-slider-wrapper">
+        <div class="gallery-slider">
+            <div class="gallery-slide">
+                <div class="gallery-card">
+                    <img src="images/WhatsApp Image 2026-07-06 at 11.37.07 (1).jpeg" alt="Career Day 2026">
+                    <div class="gallery-caption">Career Day 2026</div>
+                </div>
+            </div>
+            <div class="gallery-slide">
+                <div class="gallery-card">
+                    <img src="images/WhatsApp Image 2026-07-06 at 11.37.07.jpeg" alt="Career Day 2026">
+                    <div class="gallery-caption">Career Day 2026</div>
+                </div>
+            </div>
+            <div class="gallery-slide">
+                <div class="gallery-card">
+                    <img src="images/APJAHS.png" alt="APJAHS School Building">
+                    <div class="gallery-caption">APJAHS School Building</div>
+                </div>
+            </div>
+            <div class="gallery-slide">
+                <div class="gallery-card">
+                    <img src="images/IMG_20250726_142025_424.jpg" alt="2025 graduation">
+                    <div class="gallery-caption">2025 Graduation Ceremony</div>
+                </div>
+            </div>
+            <div class="gallery-slide">
+                <div class="gallery-card">
+                    <img src="images/APJAHS-School-Van.png" alt="School Bus">
+                    <div class="gallery-caption">School Bus</div>
+                </div>
+            </div>
         </div>
     </div>
+    <div class="gallery-dots"></div>
 </section>
 <footer>
     <div>
@@ -76,5 +103,101 @@
     </div>
 </footer>
 <script src="script.js"></script>
+<script>
+(function(){
+    const slider = document.querySelector('.gallery-slider');
+    if(!slider) return;
+
+    const slides = document.querySelectorAll('.gallery-slide');
+    const dotsContainer = document.querySelector('.gallery-dots');
+    const sliderWrapper = document.querySelector('.gallery-slider-wrapper');
+    let currentIndex = 0;
+    let autoAdvance = null;
+    let startX = 0;
+    let isDragging = false;
+    const AUTOPLAY_DELAY = 3000;
+
+    function updateSlider(){
+        slider.style.transform = `translateX(-${currentIndex * 100}%)`;
+        dotsContainer.querySelectorAll('button').forEach((dot,index)=>{
+            dot.classList.toggle('active', index === currentIndex);
+        });
+    }
+
+    function goTo(index){
+        currentIndex = (index + slides.length) % slides.length;
+        updateSlider();
+    }
+
+    function startAutoplay(){
+        stopAutoplay();
+        autoAdvance = setInterval(() => goTo(currentIndex + 1), AUTOPLAY_DELAY);
+    }
+
+    function stopAutoplay(){
+        if(autoAdvance){
+            clearInterval(autoAdvance);
+            autoAdvance = null;
+        }
+    }
+
+    function handleSwipe(deltaX){
+        const threshold = 60;
+        if(deltaX > threshold){
+            goTo(currentIndex - 1);
+            startAutoplay();
+        } else if(deltaX < -threshold){
+            goTo(currentIndex + 1);
+            startAutoplay();
+        }
+    }
+
+    function onPointerDown(event){
+        isDragging = true;
+        startX = event.type === 'touchstart' ? event.touches[0].clientX : event.clientX;
+        stopAutoplay();
+    }
+
+    function onPointerMove(event){
+        if(!isDragging) return;
+        const currentX = event.type === 'touchmove' ? event.touches[0].clientX : event.clientX;
+        const deltaX = currentX - startX;
+        if(Math.abs(deltaX) > 120){
+            handleSwipe(deltaX);
+            isDragging = false;
+        }
+    }
+
+    function onPointerEnd(){
+        if(!isDragging) return;
+        isDragging = false;
+        startAutoplay();
+    }
+
+    slides.forEach((_, index)=>{
+        const dot = document.createElement('button');
+        dot.type = 'button';
+        dot.className = index === 0 ? 'active' : '';
+        dot.addEventListener('click', ()=>{
+            goTo(index);
+            startAutoplay();
+        });
+        dotsContainer.appendChild(dot);
+    });
+
+    if(sliderWrapper){
+        sliderWrapper.addEventListener('touchstart', onPointerDown, {passive:true});
+        sliderWrapper.addEventListener('touchmove', onPointerMove, {passive:true});
+        sliderWrapper.addEventListener('touchend', onPointerEnd);
+        sliderWrapper.addEventListener('mousedown', onPointerDown);
+        sliderWrapper.addEventListener('mousemove', onPointerMove);
+        sliderWrapper.addEventListener('mouseup', onPointerEnd);
+        sliderWrapper.addEventListener('mouseleave', onPointerEnd);
+    }
+
+    updateSlider();
+    startAutoplay();
+})();
+</script>
 </body>
 </html>

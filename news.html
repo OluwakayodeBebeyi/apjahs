@@ -8,6 +8,56 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="apja.css">
+    <style>
+        .news-carousel .news-slider-wrapper{
+            position:relative;
+            overflow:hidden;
+            border-radius:0;
+            box-shadow:none;
+            max-width:1350px;
+            margin:0 auto;
+        }
+        .news-carousel .news-slider{
+            display:flex;
+            transition:transform .5s ease;
+            width:100%;
+        }
+        .news-carousel .news-slide{
+            min-width:100%;
+            flex-shrink:0;
+            display:flex;
+            justify-content:center;
+            align-items:center;
+            padding:0;
+            background:transparent;
+        }
+        .news-carousel .news-slide img{
+            width:100%;
+            max-width:1680px;
+            height:auto;
+            max-height:950px;
+            display:block;
+            object-fit:contain;
+            border-radius:0;
+        }
+        .news-dots{
+            display:flex;
+            justify-content:center;
+            gap:10px;
+            margin-top:18px;
+        }
+        .news-dots button{
+            width:12px;
+            height:12px;
+            border-radius:50%;
+            border:none;
+            background:rgba(15,23,42,.24);
+            cursor:pointer;
+        }
+        .news-dots button.active{
+            background:var(--primary);
+        }
+    </style>
 </head>
 <body>
 <header>
@@ -35,22 +85,18 @@
         <span>NEWS</span>
         <h2>Latest Updates</h2>
     </div>
-    <div class="news-grid">
-        <article>
-            <img src="images/news1.jpg" alt="Admissions Open">
-            <h3>Admissions Open</h3>
-            <p>Enroll your child today.</p>
-        </article>
-        <article>
-            <img src="images/news2.jpg" alt="Science Fair">
-            <h3>Science Fair</h3>
-            <p>Innovation on display.</p>
-        </article>
-        <article>
-            <img src="images/news3.jpg" alt="Inter-house Sports">
-            <h3>Inter-house Sports</h3>
-            <p>Celebrating teamwork and excellence.</p>
-        </article>
+    <div class="news-carousel">
+        <div class="news-slider-wrapper">
+            <div class="news-slider">
+                <div class="news-slide">
+                    <img src="images/APJAHS-School_Flyer.png" alt="Admissions Now Open">
+                </div>
+                <div class="news-slide">
+                    <img src="images/Culture Day celebration invite-.PNG" alt="Culture Day 2026">
+                </div>
+            </div>
+        </div>
+        <div class="news-dots"></div>
     </div>
 </section>
 <footer>
@@ -85,5 +131,101 @@
     </div>
 </footer>
 <script src="script.js"></script>
+<script>
+(function(){
+    const slider = document.querySelector('.news-slider');
+    if(!slider) return;
+
+    const slides = document.querySelectorAll('.news-slide');
+    const dotsContainer = document.querySelector('.news-dots');
+    const sliderWrapper = document.querySelector('.news-slider-wrapper');
+    let currentIndex = 0;
+    let autoAdvance = null;
+    let startX = 0;
+    let isDragging = false;
+    const AUTOPLAY_DELAY = 3500;
+
+    function updateSlider(){
+        slider.style.transform = `translateX(-${currentIndex * 100}%)`;
+        dotsContainer.querySelectorAll('button').forEach((dot,index)=>{
+            dot.classList.toggle('active', index === currentIndex);
+        });
+    }
+
+    function goTo(index){
+        currentIndex = (index + slides.length) % slides.length;
+        updateSlider();
+    }
+
+    function startAutoplay(){
+        stopAutoplay();
+        autoAdvance = setInterval(() => goTo(currentIndex + 1), AUTOPLAY_DELAY);
+    }
+
+    function stopAutoplay(){
+        if(autoAdvance){
+            clearInterval(autoAdvance);
+            autoAdvance = null;
+        }
+    }
+
+    function handleSwipe(deltaX){
+        const threshold = 80;
+        if(deltaX > threshold){
+            goTo(currentIndex - 1);
+            startAutoplay();
+        } else if(deltaX < -threshold){
+            goTo(currentIndex + 1);
+            startAutoplay();
+        }
+    }
+
+    function onPointerDown(event){
+        isDragging = true;
+        startX = event.type === 'touchstart' ? event.touches[0].clientX : event.clientX;
+        stopAutoplay();
+    }
+
+    function onPointerMove(event){
+        if(!isDragging) return;
+        const currentX = event.type === 'touchmove' ? event.touches[0].clientX : event.clientX;
+        const deltaX = currentX - startX;
+        if(Math.abs(deltaX) > 120){
+            handleSwipe(deltaX);
+            isDragging = false;
+        }
+    }
+
+    function onPointerEnd(){
+        if(!isDragging) return;
+        isDragging = false;
+        startAutoplay();
+    }
+
+    slides.forEach((_, index)=>{
+        const dot = document.createElement('button');
+        dot.type = 'button';
+        dot.className = index === 0 ? 'active' : '';
+        dot.addEventListener('click', ()=>{
+            goTo(index);
+            startAutoplay();
+        });
+        dotsContainer.appendChild(dot);
+    });
+
+    if(sliderWrapper){
+        sliderWrapper.addEventListener('touchstart', onPointerDown, {passive:true});
+        sliderWrapper.addEventListener('touchmove', onPointerMove, {passive:true});
+        sliderWrapper.addEventListener('touchend', onPointerEnd);
+        sliderWrapper.addEventListener('mousedown', onPointerDown);
+        sliderWrapper.addEventListener('mousemove', onPointerMove);
+        sliderWrapper.addEventListener('mouseup', onPointerEnd);
+        sliderWrapper.addEventListener('mouseleave', onPointerEnd);
+    }
+
+    updateSlider();
+    startAutoplay();
+})();
+</script>
 </body>
 </html>

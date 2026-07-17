@@ -122,10 +122,12 @@
                 <div style="flex:1 1 280px">
                     <label for="doc_birth">Birth Certificate / Age Proof</label>
                     <input id="doc_birth" name="doc_birth" type="file" accept="image/*,.pdf">
+                    <div id="birthPreview" class="file-preview"></div>
                 </div>
                 <div style="flex:1 1 200px">
                     <label for="doc_photo">Passport Photo</label>
                     <input id="doc_photo" name="doc_photo" type="file" accept="image/*">
+                    <div id="photoPreview" class="file-preview"></div>
                 </div>
             </div>
 
@@ -197,24 +199,31 @@ function validateForm(form){
 }
 
 // file previews
-document.getElementById('doc_photo').addEventListener('change', function(e){
-    const file = e.target.files[0];
-    const preview = document.getElementById('photoPreview');
-    preview.innerHTML = '';
-    if(file && file.type.startsWith('image/')){
-        const img = document.createElement('img');
-        img.src = URL.createObjectURL(file);
-        img.style.maxWidth = '140px';
-        img.style.borderRadius = '8px';
-        preview.appendChild(img);
-    }
-});
+const photoInput = document.getElementById('doc_photo');
+const birthInput = document.getElementById('doc_birth');
+const photoPreview = document.getElementById('photoPreview');
+const birthPreview = document.getElementById('birthPreview');
 
-document.getElementById('doc_birth').addEventListener('change', function(e){
-    const file = e.target.files[0];
-    const preview = document.getElementById('birthPreview');
-    preview.textContent = file ? file.name : '';
-});
+if(photoInput && photoPreview){
+    photoInput.addEventListener('change', function(e){
+        const file = e.target.files[0];
+        photoPreview.innerHTML = '';
+        if(file && file.type.startsWith('image/')){
+            const img = document.createElement('img');
+            img.src = URL.createObjectURL(file);
+            img.style.maxWidth = '140px';
+            img.style.borderRadius = '8px';
+            photoPreview.appendChild(img);
+        }
+    });
+}
+
+if(birthInput && birthPreview){
+    birthInput.addEventListener('change', function(e){
+        const file = e.target.files[0];
+        birthPreview.textContent = file ? file.name : '';
+    });
+}
 
 document.getElementById('fullAppForm').addEventListener('submit', async function(e){
     e.preventDefault();
