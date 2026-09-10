@@ -1864,3 +1864,243 @@ footer{
 }
 
 .stats-row{display:flex;justify-content:center;align-items:stretch;gap:28px;flex-wrap:wrap;padding-top:12px}
+
+/*======================================
+MOBILE LAYOUT OVERRIDES
+======================================*/
+
+@media(max-width:1000px){
+    .hero::before{
+        width:100vw;
+        max-width:100%;
+        right:0;
+    }
+
+    header{
+        padding:12px 5%;
+        flex-wrap:wrap;
+        gap:10px 18px;
+    }
+
+    .logo{
+        min-width:0;
+        flex:1 1 auto;
+    }
+
+    .logo img{
+        width:48px;
+        flex:0 0 48px;
+    }
+
+    .logo h2{
+        font-size:1rem;
+        line-height:1.2;
+    }
+
+    .logo span{
+        font-size:.75rem;
+        line-height:1.2;
+    }
+
+    nav{
+        display:flex;
+        order:3;
+        width:100%;
+        max-width:none;
+        justify-content:center;
+        gap:8px 18px;
+        flex-wrap:wrap;
+        padding:4px 0 2px;
+    }
+
+    nav a{
+        font-size:.85rem;
+    }
+
+    .apply-btn{
+        padding:10px 16px;
+        font-size:.85rem;
+        white-space:nowrap;
+    }
+
+    .hero{
+        min-height:760px;
+        padding:150px 6% 80px;
+    }
+
+    .hero-content{
+        width:100%;
+        margin-top:30px;
+    }
+
+    .hero h1{
+        font-size:clamp(2rem, 6vw, 3rem);
+        overflow-wrap:anywhere;
+    }
+
+    .hero p{
+        max-width:650px;
+        margin-left:auto;
+        margin-right:auto;
+    }
+
+    .about-container,
+    .contact-wrapper{
+        grid-template-columns:minmax(0,1fr);
+    }
+
+    .about-container{
+        padding:28px;
+    }
+
+    .contact-cards{
+        grid-template-columns:minmax(0,1fr);
+    }
+}
+
+@media(max-width:768px){
+    section{
+        padding:64px 5%;
+    }
+
+    .section-title{
+        margin-bottom:40px;
+    }
+
+    .section-title h2{
+        font-size:clamp(1.8rem, 7vw, 2.4rem);
+    }
+
+    .hero{
+        min-height:720px;
+        padding:160px 5% 70px;
+    }
+
+    .hero-tag{
+        padding:8px 16px;
+        font-size:.85rem;
+    }
+
+    .hero p{
+        font-size:1rem;
+        line-height:1.65;
+        margin-bottom:30px;
+    }
+
+    .hero-buttons{
+        width:100%;
+        gap:14px;
+    }
+
+    .primary-btn,
+    .secondary-btn{
+        width:min(100%, 300px);
+        padding:14px 20px !important;
+        text-align:center;
+    }
+
+    .founder-container,
+    .contact-form,
+    .map-panel{
+        padding:22px;
+    }
+
+    .statistics{
+        margin:2rem 5% 40px;
+        padding:40px 5%;
+    }
+
+    .stats-row{
+        gap:16px;
+    }
+
+    .stat{
+        flex:1 1 140px;
+        min-width:0;
+        padding:22px 12px;
+    }
+
+    .stat h2{
+        font-size:2.4rem;
+    }
+
+    .program-grid{
+        grid-template-columns:minmax(0,1fr);
+    }
+
+    .testimonials.founder-like{
+        padding:32px 5%;
+    }
+
+    .testimonials.founder-like .testimonial{
+        min-width:0;
+        padding:22px;
+    }
+}
+
+@media(max-width:480px){
+    header{
+        padding:10px 4%;
+    }
+
+    .logo{
+        gap:8px;
+    }
+
+    .logo img{
+        width:40px;
+        flex-basis:40px;
+    }
+
+    .logo h2{
+        font-size:.82rem;
+    }
+
+    .logo span{
+        font-size:.65rem;
+    }
+
+    .apply-btn{
+        padding:8px 11px;
+        font-size:.75rem;
+    }
+
+    nav{
+        gap:6px 12px;
+    }
+
+    nav a{
+        font-size:.75rem;
+    }
+
+    .hero{
+        min-height:680px;
+        padding:150px 5% 60px;
+    }
+
+    .hero h1{
+        font-size:1.85rem;
+    }
+
+    .hero-welcome{
+        font-size:.85em !important;
+    }
+
+    .about-container{
+        padding:20px;
+    }
+
+    .founder-photo img{
+        width:150px;
+        height:150px;
+    }
+
+    .contact-intro h2{
+        font-size:2rem;
+    }
+
+    .form-row{
+        gap:16px;
+        margin-bottom:16px;
+    }
+}
