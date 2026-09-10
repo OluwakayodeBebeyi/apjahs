@@ -137,6 +137,50 @@ document.addEventListener("DOMContentLoaded", () => {
     reveal();
 
     /*=========================================
+        SCHOOL AGE
+    =========================================*/
+
+    const schoolOpeningDate = new Date(2019, 8, 1);
+
+    function updateSchoolAge(){
+        const today = new Date();
+        let schoolAge = today.getFullYear() - schoolOpeningDate.getFullYear();
+        const anniversaryThisYear = new Date(
+            today.getFullYear(),
+            schoolOpeningDate.getMonth(),
+            schoolOpeningDate.getDate()
+        );
+
+        if (today < anniversaryThisYear) schoolAge -= 1;
+        schoolAge = Math.max(0, schoolAge);
+
+        document.querySelectorAll("[data-school-age]").forEach(ageElement => {
+            ageElement.textContent = `${schoolAge}+`;
+            ageElement.dataset.target = schoolAge;
+            ageElement.dataset.suffix = "+";
+        });
+    }
+
+    function scheduleNextSchoolAgeUpdate(){
+        const now = new Date();
+        const nextAnniversary = new Date(
+            now.getFullYear() + (now >= new Date(now.getFullYear(), 8, 1) ? 1 : 0),
+            schoolOpeningDate.getMonth(),
+            schoolOpeningDate.getDate()
+        );
+        const delay = nextAnniversary.getTime() - now.getTime() + 1000;
+
+        window.setTimeout(() => {
+            updateSchoolAge();
+            scheduleNextSchoolAgeUpdate();
+        }, delay);
+    }
+
+    updateSchoolAge();
+    scheduleNextSchoolAgeUpdate();
+    document.addEventListener("visibilitychange", updateSchoolAge);
+
+    /*=========================================
         STATISTICS COUNTER
     =========================================*/
 
