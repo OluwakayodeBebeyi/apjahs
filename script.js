@@ -12,6 +12,25 @@ document.addEventListener("DOMContentLoaded", () => {
     const header = document.querySelector("header");
     let lastScrollY = window.scrollY;
 
+    const mobileNavToggle = document.querySelector(".mobile-nav-toggle");
+    const siteNavigation = document.querySelector("#site-navigation");
+
+    if (mobileNavToggle && siteNavigation) {
+        mobileNavToggle.addEventListener("click", () => {
+            const isOpen = header.classList.toggle("mobile-menu-open");
+            mobileNavToggle.setAttribute("aria-expanded", String(isOpen));
+            mobileNavToggle.textContent = isOpen ? "Close" : "Menu";
+        });
+
+        siteNavigation.querySelectorAll("a").forEach(link => {
+            link.addEventListener("click", () => {
+                header.classList.remove("mobile-menu-open");
+                mobileNavToggle.setAttribute("aria-expanded", "false");
+                mobileNavToggle.textContent = "Menu";
+            });
+        });
+    }
+
     window.addEventListener("scroll", () => {
         const currentScrollY = window.scrollY;
 
