@@ -2272,7 +2272,7 @@ GALLERY ARCHIVE
 
 @media(max-width:600px){
     .archive-page{
-        padding-top:145px;
+        padding:145px 5% 64px;
     }
 
     .archive-intro{
