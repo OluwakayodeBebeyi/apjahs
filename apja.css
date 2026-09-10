@@ -1111,6 +1111,34 @@ CONTACT SECTION
     color:var(--primary);
 }
 
+.contact-card-icon{
+    position:absolute;
+    top:24px;
+    right:24px;
+    display:block;
+    width:24px;
+    height:24px;
+    background-position:center;
+    background-repeat:no-repeat;
+    background-size:contain;
+}
+
+.contact-card--email .contact-card-icon{
+    background-image:url('data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="%231E3A8A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"%3E%3Crect x="3" y="5" width="18" height="14" rx="2"/%3E%3Cpolyline points="3 7 12 13 21 7"/%3E%3C/svg%3E');
+}
+
+.contact-card--phone .contact-card-icon{
+    background-image:url('data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="%231E3A8A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"%3E%3Cpath d="M22 16.92V21a2 2 0 0 1-2.18 2A19.79 19.79 0 0 1 3 5.18 2 2 0 0 1 5 3h4.09a2 2 0 0 1 2 1.72c.12.81.36 1.61.72 2.36a2 2 0 0 1-.45 2.11L10.5 10.5a16 16 0 0 0 6.94 6.94l1.31-1.31a2 2 0 0 1 2.11-.45c.75.36 1.55.6 2.36.72a2 2 0 0 1 1.72 2z"/%3E%3C/svg%3E');
+}
+
+.contact-card--location .contact-card-icon{
+    background-image:url('data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="%231E3A8A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"%3E%3Cpath d="M20 10c0 5-8 12-8 12S4 15 4 10a8 8 0 1 1 16 0Z"/%3E%3Ccircle cx="12" cy="10" r="2.5"/%3E%3C/svg%3E');
+}
+
+.contact-card--hours .contact-card-icon{
+    background-image:url('data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="%231E3A8A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"%3E%3Ccircle cx="12" cy="12" r="9"/%3E%3Cpolyline points="12 7 12 12 16 14"/%3E%3C/svg%3E');
+}
+
 .contact-card p{
     margin:0;
     color:rgba(15,23,42,.8);
@@ -1178,10 +1206,16 @@ CONTACT SECTION
     border-radius:28px;
     overflow:hidden;
     background:linear-gradient(145deg, rgba(22,84,255,.12), rgba(147,197,253,.12));
-    display:flex;
-    align-items:center;
-    justify-content:center;
+    min-height:210px;
     box-shadow:inset 0 0 0 1px rgba(255,255,255,.6);
+}
+
+.map-image iframe{
+    width:100%;
+    height:100%;
+    min-height:210px;
+    display:block;
+    border:0;
 }
 
 .map-image span{
@@ -1197,11 +1231,17 @@ CONTACT SECTION
 
 .map-pin{
     position:absolute;
+    z-index:2;
+    left:50%;
+    top:50%;
     width:18px;
     height:18px;
     border-radius:50%;
-    background:var(--secondary);
-    box-shadow:0 0 0 8px rgba(252,211,77,.18);
+    background:#dc2626;
+    border:3px solid #fff;
+    box-shadow:0 0 0 7px rgba(220,38,38,.24), 0 4px 12px rgba(15,23,42,.35);
+    transform:translate(-50%,-50%);
+    pointer-events:none;
 }
 
 .contact-right{
@@ -1282,6 +1322,24 @@ CONTACT SECTION
     }
     .contact-intro h2{
         font-size:2.4rem;
+    }
+    .map-image{
+        height:240px;
+        min-height:240px;
+    }
+    .map-image iframe{
+        min-height:240px;
+    }
+    .map-pin{
+        width:22px;
+        height:22px;
+    }
+    .map-directions{
+        min-height:44px;
+        align-items:center;
+        padding:10px 14px;
+        border-radius:8px;
+        background:rgba(30,58,138,.08);
     }
 }
 
@@ -2568,4 +2626,11 @@ MOBILE LAYOUT OVERRIDES
         padding:9px 12px;
         border-radius:8px;
     }
+}
+
+.map-directions{
+    display:inline-flex;
+    margin-top:16px;
+    color:var(--primary);
+    font-weight:700;
 }
