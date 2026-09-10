@@ -156,10 +156,12 @@
 
 <div class="archive-lightbox" aria-hidden="true" role="dialog" aria-modal="true" aria-label="Archive image viewer">
     <button class="archive-lightbox-close" type="button" aria-label="Close image viewer">&times;</button>
+    <button class="archive-lightbox-nav archive-lightbox-prev" type="button" aria-label="Previous image">&#8592;</button>
     <figure>
         <img src="" alt="">
         <figcaption><strong></strong><span></span></figcaption>
     </figure>
+    <button class="archive-lightbox-nav archive-lightbox-next" type="button" aria-label="Next image">&#8594;</button>
 </div>
 <footer>
     <div>
@@ -202,6 +204,34 @@
     const lightboxImage = lightbox.querySelector('img');
     const lightboxTitle = lightbox.querySelector('strong');
     const lightboxDetail = lightbox.querySelector('span');
+    const previousButton = lightbox.querySelector('.archive-lightbox-prev');
+    const nextButton = lightbox.querySelector('.archive-lightbox-next');
+    let currentIndex = 0;
+    let touchStartX = 0;
+
+    function getVisibleButtons(){
+        return [...document.querySelectorAll('.archive-card:not([hidden]) .archive-image-button')];
+    }
+
+    function showImage(index){
+        const imageButtons = getVisibleButtons();
+        if (!imageButtons.length) return;
+        currentIndex = (index + imageButtons.length) % imageButtons.length;
+        const button = imageButtons[currentIndex];
+        lightboxImage.src = button.dataset.full;
+        lightboxImage.alt = button.dataset.title;
+        lightboxTitle.textContent = button.dataset.title;
+        lightboxDetail.textContent = button.dataset.detail;
+    }
+
+    function openLightbox(button){
+        currentIndex = getVisibleButtons().indexOf(button);
+        showImage(currentIndex);
+        lightbox.classList.add('open');
+        lightbox.setAttribute('aria-hidden', 'false');
+        document.body.classList.add('lightbox-open');
+        nextButton.focus();
+    }
 
     archiveFilters.forEach(filter => filter.addEventListener('click', () => {
         const selected = filter.dataset.filter;
@@ -216,14 +246,11 @@
     }));
 
     document.querySelectorAll('.archive-image-button').forEach(button => button.addEventListener('click', () => {
-        lightboxImage.src = button.dataset.full;
-        lightboxImage.alt = button.dataset.title;
-        lightboxTitle.textContent = button.dataset.title;
-        lightboxDetail.textContent = button.dataset.detail;
-        lightbox.classList.add('open');
-        lightbox.setAttribute('aria-hidden', 'false');
-        document.body.classList.add('lightbox-open');
+        openLightbox(button);
     }));
+
+    previousButton.addEventListener('click', () => showImage(currentIndex - 1));
+    nextButton.addEventListener('click', () => showImage(currentIndex + 1));
 
     function closeLightbox(){
         lightbox.classList.remove('open');
@@ -236,7 +263,26 @@
     });
     document.addEventListener('keydown', event => {
         if (event.key === 'Escape') closeLightbox();
+        if (!lightbox.classList.contains('open')) return;
+        if (event.key === 'ArrowLeft'){
+            event.preventDefault();
+            showImage(currentIndex - 1);
+        }
+        if (event.key === 'ArrowRight'){
+            event.preventDefault();
+            showImage(currentIndex + 1);
+        }
     });
+
+    lightbox.addEventListener('touchstart', event => {
+        touchStartX = event.changedTouches[0].screenX;
+    }, {passive:true});
+
+    lightbox.addEventListener('touchend', event => {
+        const distance = event.changedTouches[0].screenX - touchStartX;
+        if (Math.abs(distance) < 50) return;
+        showImage(currentIndex + (distance < 0 ? 1 : -1));
+    }, {passive:true});
 </script>
 </body>
 </html>

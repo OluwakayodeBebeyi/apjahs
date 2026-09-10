@@ -2089,6 +2089,7 @@ GALLERY ARCHIVE
     opacity:0;
     pointer-events:none;
     transition:opacity .25s ease;
+    touch-action:pan-y;
 }
 
 .archive-lightbox.open{
@@ -2135,6 +2136,40 @@ GALLERY ARCHIVE
     cursor:pointer;
     font-size:2.5rem;
     line-height:1;
+}
+
+.archive-lightbox-nav{
+    position:absolute;
+    top:50%;
+    z-index:1;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    width:52px;
+    height:52px;
+    border:1px solid rgba(255,255,255,.35);
+    border-radius:50%;
+    background:rgba(15,23,42,.72);
+    color:#fff;
+    cursor:pointer;
+    font-size:1.8rem;
+    line-height:1;
+    transform:translateY(-50%);
+    transition:background .2s ease,transform .2s ease;
+}
+
+.archive-lightbox-nav:hover,
+.archive-lightbox-nav:focus-visible{
+    background:var(--primary);
+    transform:translateY(-50%) scale(1.06);
+}
+
+.archive-lightbox-prev{
+    left:28px;
+}
+
+.archive-lightbox-next{
+    right:28px;
 }
 
 .lightbox-open{
@@ -2200,6 +2235,27 @@ GALLERY ARCHIVE
 
     .archive-lightbox{
         padding:18px;
+    }
+
+    .archive-lightbox-nav{
+        top:auto;
+        bottom:24px;
+        width:46px;
+        height:46px;
+        transform:none;
+    }
+
+    .archive-lightbox-nav:hover,
+    .archive-lightbox-nav:focus-visible{
+        transform:scale(1.06);
+    }
+
+    .archive-lightbox-prev{
+        left:24px;
+    }
+
+    .archive-lightbox-next{
+        right:24px;
     }
 
     .archive-lightbox figcaption{
