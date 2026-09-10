@@ -2080,6 +2080,11 @@ GALLERY ARCHIVE
     cursor:zoom-in;
 }
 
+.archive-image-button:focus-visible{
+    outline:3px solid var(--secondary);
+    outline-offset:-3px;
+}
+
 .archive-card-featured .archive-image-button{
     height:330px;
 }
@@ -2284,6 +2289,7 @@ GALLERY ARCHIVE
     }
 
     .archive-filter{
+        min-height:44px;
         padding:9px 12px;
         font-size:.78rem;
     }
@@ -2300,6 +2306,10 @@ GALLERY ARCHIVE
     .archive-image-button,
     .archive-card-featured .archive-image-button{
         height:230px;
+    }
+
+    .archive-card-copy h2{
+        font-size:1.1rem;
     }
 
     .archive-lightbox{
