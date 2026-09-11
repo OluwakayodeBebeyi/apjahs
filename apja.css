@@ -156,6 +156,15 @@ h1,h2,h3,h4{
 
 }
 
+.curriculum-comparison{
+    display:block;
+    width:min(100%, 1100px);
+    height:auto;
+    margin:28px auto 0;
+    border-radius:18px;
+    box-shadow:0 18px 45px rgba(15,23,42,.12);
+}
+
 .contact .section-title{
 
     margin-top:0.5cm;
