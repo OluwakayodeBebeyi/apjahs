@@ -39,7 +39,7 @@
             <h1>Moments that tell our story.</h1>
             <p>A growing collection of school life, celebrations, learning experiences, and milestones captured across the APJAHS community.</p>
         </div>
-        <div class="archive-count"><strong>14</strong><span>records<br>in the archive</span></div>
+        <div class="archive-count"><strong>12</strong><span>records<br>in the archive</span></div>
     </div>
 
     <div class="archive-toolbar">
@@ -187,6 +187,7 @@
     const archiveCards = document.querySelectorAll('.archive-card');
     const archiveFilters = document.querySelectorAll('.archive-filter');
     const archiveStatus = document.querySelector('.archive-status');
+    const archiveCount = document.querySelector('.archive-count strong');
     const lightbox = document.querySelector('.archive-lightbox');
     const lightboxImage = lightbox.querySelector('img');
     const lightboxTitle = lightbox.querySelector('strong');
@@ -195,6 +196,9 @@
     const nextButton = lightbox.querySelector('.archive-lightbox-next');
     let currentIndex = 0;
     let touchStartX = 0;
+
+    archiveCount.textContent = archiveCards.length;
+    archiveStatus.textContent = `${archiveCards.length} records shown`;
 
     function getVisibleButtons(){
         return [...document.querySelectorAll('.archive-card:not([hidden]) .archive-image-button')];

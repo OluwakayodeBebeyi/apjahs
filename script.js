@@ -229,7 +229,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
                 const suffix=text.replace(/[0-9]/g,"");
 
-                let count=0;
+                let count=target;
 
                 const speed=target/120;
 
